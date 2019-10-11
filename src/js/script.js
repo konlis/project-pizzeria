@@ -111,7 +111,8 @@
       console.log('thisinitAccordion:', thisProduct);
 
       /* find the clickable trigger (the element that should react to clicking) */
-
+      const clickableTrigger = document.querySelector(select.menuProduct.clickable);
+      console.log('clickableTrigger:', clickableTrigger);
       /* START: click event listener to trigger */
 
       /* prevent default action for event */
