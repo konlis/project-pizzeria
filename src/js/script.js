@@ -53,21 +53,21 @@
   };
 
   const app = {
-    initMenu: function (){
+    initMenu: function () {
       const thisApp = this;
       console.log('thisApp.data:', thisApp.data);
-      for(let productData in thisApp.data.products){
+      for (let productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
       }
     },
 
-    initData: function(){
+    initData: function () {
       const thisApp = this;
 
       thisApp.data = dataSource;
     },
 
-    init: function(){
+    init: function () {
       const thisApp = this;
       console.log('*** App starting ***');
       console.log('thisApp:', thisApp);
@@ -81,17 +81,18 @@
   };
 
   class Product {
-    constructor(id, data){
+    constructor(id, data) {
       const thisProduct = this;
 
       thisProduct.id = id;
       thisProduct.data = data;
 
       thisProduct.renderInMenu();
+      thisProduct.initAccordion();
 
-      console.log('new Product:', thisProduct);
+      //console.log('new Product:', thisProduct);
     }
-    renderInMenu(){
+    renderInMenu() {
       const thisProduct = this;
 
       /*generate HTML based on template*/
@@ -101,9 +102,35 @@
       thisProduct.element = utils.createDOMFromHTML(generatedHTML);
       /* find menu container*/
       const menuContainer = document.querySelector(select.containerOf.menu);
-      console.log('menuContainer:', menuContainer);
+      //console.log('menuContainer:', menuContainer);
       /*add element to menu */
       menuContainer.appendChild(thisProduct.element);
+    }
+    initAccordion() {
+      const thisProduct = this;
+      console.log('thisinitAccordion:', thisProduct);
+
+      /* find the clickable trigger (the element that should react to clicking) */
+
+      /* START: click event listener to trigger */
+
+      /* prevent default action for event */
+
+      /* toggle active class on element of thisProduct */
+
+      /* find all active products */
+
+      /* START LOOP: for each active product */
+
+      /* START: if the active product isn't the element of thisProduct */
+
+      /* remove class active for the active product */
+
+      /* END: if the active product isn't the element of thisProduct */
+
+      /* END LOOP: for each active product */
+
+      /* END: click event listener to trigger */
     }
   }
 
