@@ -114,13 +114,21 @@
       const clickableTrigger = document.querySelector(select.menuProduct.clickable);
       console.log('clickableTrigger:', clickableTrigger);
       /* START: click event listener to trigger */
-
+      clickableTrigger.addEventListener('click', function () {
+        console.log('clicked');
+      });
       /* prevent default action for event */
-
+      //event.preventDefault();
       /* toggle active class on element of thisProduct */
+      if (thisProduct.classList.contains('active')) {
+        thisProduct.classList.remove('active');
+      }
+      else
+        thisProduct.classList.add('active');
 
       /* find all active products */
-
+      const activeProducts = thisProduct.querySelectorAll(select.menuProductsActive);
+      console.log('activeProducts:', activeProducts);
       /* START LOOP: for each active product */
 
       /* START: if the active product isn't the element of thisProduct */
