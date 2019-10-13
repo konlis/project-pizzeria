@@ -107,7 +107,7 @@
       menuContainer.appendChild(thisProduct.element);
     }
   }
-  //  initAccordion() {
+   initAccordion() {
   //const thisProduct = this;
   //console.log('thisinitAccordion:', thisProduct);
 
