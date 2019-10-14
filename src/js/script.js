@@ -128,7 +128,8 @@
         for (let activeProduct of activeProducts) {
           console.log('activeProduct', activeProduct);
           /* START: if the active product isn't the element of thisProduct */
-          if (activeProduct != thisProduct) {
+          if (activeProduct != thisProduct.element) {
+            console.log('!=activeProduct', activeProduct);
             /* remove class active for the active product */
             thisProduct.element.classList.remove('active');
             console.log('thisProductInactive', thisProduct);
