@@ -88,7 +88,10 @@
       thisProduct.data = data;
 
       thisProduct.renderInMenu();
+      thisProduct.getElements();
       thisProduct.initAccordion();
+      thisProduct.initOrderForm();
+      thisProduct.processOrder();
 
       //console.log('new Product:', thisProduct);
     }
@@ -112,14 +115,18 @@
       thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
       thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      //console.log('thisProduct.formInputs:', thisProduct.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+      //console.log('thisProduct.cartButton:', thisProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      //console.log('thisProduct.priceElem:', thisProduct.priceElem);
     }
     initAccordion() {
       const thisProduct = this;
       //console.log('thisinitAccordion:', thisProduct);
       /* find the clickable trigger (the element that should react to clicking) */
-      const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      //const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable); / zamienione na stałą z metody getelement w kolejnym zadaniu
+      const clickableTrigger = thisProduct.accordionTrigger;
       //console.log('clickableTrigger:', clickableTrigger);
       /* START: click event listener to trigger */
       clickableTrigger.addEventListener('click', function (event) {
@@ -135,19 +142,27 @@
         //console.log('activeProducts:', activeProducts);
         /* START LOOP: for each active product */
         for (let activeProduct of activeProducts) {
-          console.log('activeProduct', activeProduct);
+          //console.log('activeProduct', activeProduct);
           /* START: if the active product isn't the element of thisProduct */
           if (activeProduct != thisProduct.element) {
-            console.log('!=activeProduct', activeProduct);
+            //console.log('!=activeProduct', activeProduct);
             /* remove class active for the active product */
             activeProduct.classList.remove('active');
-            console.log('thisProductInactive', activeProduct);
+            //console.log('thisProductInactive', activeProduct);
             /* END: if the active product isn't the element of thisProduct */
           }
           /* END LOOP: for each active product */
         }
         /* END: click event listener to trigger */
       });
+    }
+    initOrderForm() {
+      const thisProduct = this;
+      console.log('initOrderForm', thisProduct);
+    }
+    processOrder() {
+      const thisProduct = this;
+      console.log('processOrder', thisProduct);
     }
   }
   app.init();
