@@ -114,7 +114,7 @@
       //console.log('clickableTrigger:', clickableTrigger);
       /* START: click event listener to trigger */
       clickableTrigger.addEventListener('click', function (event) {
-        console.log('clicked', event);
+        //console.log('clicked', event);
         /* prevent default action for event */
         event.preventDefault();
         //console.log(event);
@@ -123,7 +123,7 @@
         //console.log('thisProduct.element:', thisProduct);
         /* find all active products */
         const activeProducts = document.querySelectorAll(select.all.menuProductsActive);
-        console.log('activeProducts:', activeProducts);
+        //console.log('activeProducts:', activeProducts);
         /* START LOOP: for each active product */
         for (let activeProduct of activeProducts) {
           console.log('activeProduct', activeProduct);
@@ -131,8 +131,8 @@
           if (activeProduct != thisProduct.element) {
             console.log('!=activeProduct', activeProduct);
             /* remove class active for the active product */
-            thisProduct.element.classList.remove('active');
-            console.log('thisProductInactive', thisProduct);
+            activeProduct.classList.remove('active');
+            console.log('thisProductInactive', activeProduct);
             /* END: if the active product isn't the element of thisProduct */
           }
           /* END LOOP: for each active product */
