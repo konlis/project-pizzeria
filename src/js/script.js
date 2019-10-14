@@ -158,11 +158,28 @@
     }
     initOrderForm() {
       const thisProduct = this;
-      console.log('initOrderForm', thisProduct);
+      //console.log('initOrderForm', thisProduct);
+      thisProduct.form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        //console.log('submit', event);
+        thisProduct.processOrder();
+        //console.log('thisProduct.processOrder:', thisProduct.processOrder);
+      });
+      for (let input of thisProduct.formInputs) {
+        input.addEventListener('change', function (event) {
+          thisProduct.processOrder();
+          //console.log('change', event);
+        });
+        thisProduct.cartButton.addEventListener('click', function(event){
+          event.preventDefault();
+          thisProduct.processOrder();
+          //console.log('click', event);
+        });
+      }
     }
     processOrder() {
       const thisProduct = this;
-      console.log('processOrder', thisProduct);
+      //console.log('processOrder', thisProduct);
     }
   }
   app.init();
