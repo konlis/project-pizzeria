@@ -223,24 +223,33 @@
             //console.log('optionId', optionId);
             /* END ELSE IF: if option is not selected and option is default */
           }
-          /* NEW START IF ELSE : if selected, add to imageWrapper 'active' class */
-          if (optionSelected) {
-            const visibleImages = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
-            console.log('visibleImages', visibleImages);
-            //thisProduct.classNames.menuProduct.imageVisible.classList.add('active');
-            //console.log('optionSelectedActive:', optionSelected);
-          //} else {
-          //  thisProduct.classNames.menuProduct.imageVisible.classList.add('remove');
-            //console.log('optionSelectedInactive:', optionSelected);
-          }
+          /* NEW create const with all images with active class visible*/
+          const activeVisibleImages = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
+          //console.log('activeVisibleImages', activeVisibleImages);
+          /* NEW START IF ELSE : if selected and have image, add to imageWrapper 'active' class */
+          if (optionSelected && activeVisibleImages) {
+            for (let activeVisibleImage of activeVisibleImages) {
+              //console.log('activeVisibleImage:', activeVisibleImage);
+              /* NEW add class active */
+              activeVisibleImage.classList.add(classNames.menuProduct.imageVisible);
+              console.log('activeVisibleImage:', activeVisibleImage);
+              /* NEW START ELSE:*/
+            } else {
+              /* NEW remove class active*/
+              activeVisibleImage.classList.remove(classNames.menuProduct.imageVisible);
+              console.log('inactiveVisibleImage:', activeVisibleImage);
+            }
 
-          /* END LOOP: for each optionId in param.options */
+          }
         }
-        /* END LOOP: for each paramId in thisProduct.data.params */
+
+        /* END LOOP: for each optionId in param.options */
       }
-      /* set the contents of thisProduct.priceElem to be the value of variable price */
-      thisProduct.priceElem.innerHTML = price;
+      /* END LOOP: for each paramId in thisProduct.data.params */
     }
+    /* set the contents of thisProduct.priceElem to be the value of variable price */
+    thisProduct.priceElem.innerHTML = price;
   }
-  app.init();
+}
+app.init();
 }
