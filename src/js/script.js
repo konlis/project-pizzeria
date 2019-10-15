@@ -121,7 +121,7 @@
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       //console.log('thisProduct.priceElem:', thisProduct.priceElem);
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
-      console.log('thisProduct.imageWrapper', thisProduct.imageWrapper);
+      //console.log('thisProduct.imageWrapper', thisProduct.imageWrapper);
     }
     initAccordion() {
       const thisProduct = this;
@@ -223,6 +223,17 @@
             //console.log('optionId', optionId);
             /* END ELSE IF: if option is not selected and option is default */
           }
+          /* NEW START IF ELSE : if selected, add to imageWrapper 'active' class */
+          if (optionSelected) {
+            const visibleImages = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
+            console.log('visibleImages', visibleImages);
+            //thisProduct.classNames.menuProduct.imageVisible.classList.add('active');
+            //console.log('optionSelectedActive:', optionSelected);
+          //} else {
+          //  thisProduct.classNames.menuProduct.imageVisible.classList.add('remove');
+            //console.log('optionSelectedInactive:', optionSelected);
+          }
+
           /* END LOOP: for each optionId in param.options */
         }
         /* END LOOP: for each paramId in thisProduct.data.params */
