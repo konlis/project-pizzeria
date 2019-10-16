@@ -236,14 +236,12 @@
           else {
             if (activeVisibleImages) {
               /*remove calss active*/
-              activeVisibleImages.classList.add(classNames.menuProduct.imageVisible);
+              activeVisibleImages.classList.remove(classNames.menuProduct.imageVisible);
               console.log('removeVisibleImage:', activeVisibleImages);
               /* NEW: END if*/
             }
             /* NEW: END else not selected*/
           }
-
-
           /* END LOOP: for each optionId in param.options */
         }
         /* END LOOP: for each paramId in thisProduct.data.params */
