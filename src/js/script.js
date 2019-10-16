@@ -224,20 +224,20 @@
             /* END ELSE IF: if option is not selected and option is default */
           }
           /* NEW :create const with all images with active class visible*/
-          const activeVisibleImages = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+          const activeVisibleImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
           //console.log('activeVisibleImages', activeVisibleImages);
           /* NEW: START IF ELSE : if selected and have image, add to imageWrapper 'active' class */
-          if (optionSelected && activeVisibleImages) {
+          if (optionSelected && activeVisibleImage) {
             /* NEW: add class active */
-            activeVisibleImages.classList.add(classNames.menuProduct.imageVisible);
-            console.log('addVisibleImage:', activeVisibleImages);
+            activeVisibleImage.classList.add(classNames.menuProduct.imageVisible);
+            //console.log('addVisibleImage:', activeVisibleImage);
           }
           /* NEW: START ELSE: not selected*/
           else {
-            if (activeVisibleImages) {
+            if (activeVisibleImage) {
               /*remove calss active*/
-              activeVisibleImages.classList.remove(classNames.menuProduct.imageVisible);
-              console.log('removeVisibleImage:', activeVisibleImages);
+              activeVisibleImage.classList.remove(classNames.menuProduct.imageVisible);
+              //console.log('removeVisibleImage:', activeVisibleImage);
               /* NEW: END if*/
             }
             /* NEW: END else not selected*/
@@ -251,4 +251,12 @@
     }
   }
   app.init();
+}
+class AmountWidget {
+  constructor(element) {
+    const thisWidget = this;
+
+    console.log('AmountWidget', thisWidget);
+    console.log('constructor argument', element);
+  }
 }
