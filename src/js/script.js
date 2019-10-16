@@ -223,33 +223,34 @@
             //console.log('optionId', optionId);
             /* END ELSE IF: if option is not selected and option is default */
           }
-          /* NEW create const with all images with active class visible*/
-          const activeVisibleImages = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
+          /* NEW :create const with all images with active class visible*/
+          const activeVisibleImages = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
           //console.log('activeVisibleImages', activeVisibleImages);
-          /* NEW START IF ELSE : if selected and have image, add to imageWrapper 'active' class */
+          /* NEW: START IF ELSE : if selected and have image, add to imageWrapper 'active' class */
           if (optionSelected && activeVisibleImages) {
-            for (let activeVisibleImage of activeVisibleImages) {
-              //console.log('activeVisibleImage:', activeVisibleImage);
-              /* NEW add class active */
-              activeVisibleImage.classList.add(classNames.menuProduct.imageVisible);
-              console.log('activeVisibleImage:', activeVisibleImage);
-              /* NEW START ELSE:*/
-            } else {
-              /* NEW remove class active*/
-              activeVisibleImage.classList.remove(classNames.menuProduct.imageVisible);
-              console.log('inactiveVisibleImage:', activeVisibleImage);
-            }
-
+            /* NEW: add class active */
+            activeVisibleImages.classList.add(classNames.menuProduct.imageVisible);
+            console.log('addVisibleImage:', activeVisibleImages);
           }
-        }
+          /* NEW: START ELSE: not selected*/
+          else {
+            if (activeVisibleImages) {
+              /*remove calss active*/
+              activeVisibleImages.classList.add(classNames.menuProduct.imageVisible);
+              console.log('removeVisibleImage:', activeVisibleImages);
+              /* NEW: END if*/
+            }
+            /* NEW: END else not selected*/
+          }
 
-        /* END LOOP: for each optionId in param.options */
+
+          /* END LOOP: for each optionId in param.options */
+        }
+        /* END LOOP: for each paramId in thisProduct.data.params */
       }
-      /* END LOOP: for each paramId in thisProduct.data.params */
+      /* set the contents of thisProduct.priceElem to be the value of variable price */
+      thisProduct.priceElem.innerHTML = price;
     }
-    /* set the contents of thisProduct.priceElem to be the value of variable price */
-    thisProduct.priceElem.innerHTML = price;
   }
-}
-app.init();
+  app.init();
 }
