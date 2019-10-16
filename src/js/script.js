@@ -207,7 +207,7 @@
           /* save the element in param.options with key optionId as const option */
           const option = param.options[optionId];
           //console.log('option:', option);
-          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;  // eslint-disable-line
+          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1; // eslint-disable-line
           //console.log('optionSelected:', optionSelected);
           /* START IF: if option is selected and option is not default */
           if (optionSelected && !option.default) {
@@ -287,9 +287,19 @@
       thisWidget.value = newValue;
       thisWidget.input.value = thisWidget.value;
     }
-    initActions(){
-      thisWidget.input.addEventListener('change' , function (event) {
+    initActions() {
+      const thisWidget = this;
+      thisWidget.input.addEventListener('change', function (event) {
         console.log('chnage', event);
+        thisWidget.value = thisWidget.input.value;
+        console.log('thisWidget.setValue', thisWidget.value);
+      });
+
+      thisWidget.linkDecrease.addEventListener('click', function (event) {
+        console.log(event);
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value - 1);
+        console.log('decreaseValue:', thisWidget.value);
       });
     }
   }
