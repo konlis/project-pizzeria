@@ -287,6 +287,11 @@
       thisWidget.value = newValue;
       thisWidget.input.value = thisWidget.value;
     }
+    initActions(){
+      thisWidget.input.addEventListener('change' , function (event) {
+        console.log('chnage', event);
+      });
+    }
   }
   app.init();
 }
