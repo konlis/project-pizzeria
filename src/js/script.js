@@ -301,6 +301,13 @@
         thisWidget.setValue(thisWidget.value - 1);
         console.log('decreaseValue:', thisWidget.value);
       });
+
+      thisWidget.linkIncrease.addEventListener('click', function (event) {
+        console.log(event);
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value + 1);
+        console.log('IncreaseValue:', thisWidget.value);
+      });
     }
   }
   app.init();
