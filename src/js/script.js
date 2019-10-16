@@ -175,7 +175,7 @@
       for (let input of thisProduct.formInputs) {
         input.addEventListener('change', function (event) {
           thisProduct.processOrder();
-          //console.log('change', event);
+          console.log('change', event);
         });
         thisProduct.cartButton.addEventListener('click', function (event) {
           event.preventDefault();
@@ -207,7 +207,7 @@
           /* save the element in param.options with key optionId as const option */
           const option = param.options[optionId];
           //console.log('option:', option);
-          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;  // eslint-disable-line
           //console.log('optionSelected:', optionSelected);
           /* START IF: if option is selected and option is not default */
           if (optionSelected && !option.default) {
@@ -254,20 +254,38 @@
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       thisProduct.priceElem.innerHTML = price;
     }
-    initAmountWidget(){
+    initAmountWidget() {
       const thisProduct = this;
 
-      thisProduct.amountWidget = new AmountWidget (thisProduct.amountWidgetElem);
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
     }
   }
-  //app.init();
 
   class AmountWidget {
     constructor(element) {
       const thisWidget = this;
-
+      thisWidget.getElements(element);
+      thisWidget.setValue(thisWidget.input.value);
       console.log('AmountWidget', thisWidget);
       console.log('constructor argument', element);
+    }
+    getElements(element) {
+      const thisWidget = this;
+
+      thisWidget.element = element;
+      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
+      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+    }
+    setValue(value) {
+      const thisWidget = this;
+
+      const newValue = parseInt(value);
+
+      /*TODO: Add validation */
+
+      thisWidget.value = newValue;
+      thisWidget.input.value = thisWidget.value;
     }
   }
   app.init();
