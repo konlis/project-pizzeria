@@ -276,7 +276,7 @@
       thisWidget.initActions();
       //console.log('AmountWidget', thisWidget);
       console.log('constructor argument', element);
-      console.log('initActions', thisWidget.initActions);
+      //console.log('initActions', thisWidget.initActions);
     }
     getElements(element) {
       const thisWidget = this;
@@ -292,33 +292,38 @@
       const newValue = parseInt(value);
 
       /*TODO: Add validation */
-
-      thisWidget.value = newValue;
-      thisWidget.announce();
+      if (newValue != thisWidget.value) {
+        thisWidget.value = newValue;
+        console.log(thisWidget.value);
+        thisWidget.announce();
+      } else if (thisWidget.value >= settings.amountWidget.defaultMin) {
+        thisWidget.value = newValue;
+        console.log(thisWidget.value);
+        thisWidget.announce();
+      } else if (thisWidget.value <= settings.amountWidget.defaultMax) {
+        thisWidget.value = newValue;
+        thisWidget.announce();
+      }
       thisWidget.input.value = thisWidget.value;
     }
     initActions() {
       const thisWidget = this;
 
       thisWidget.input.addEventListener('change', function () {
-        //console.log('chnage', event);
         thisWidget.value = thisWidget.input.value;
-        console.log('thisWidget.setValue', thisWidget.value);
       });
 
       thisWidget.linkDecrease.addEventListener('click', function (event) {
-        //console.log('czemu nei działa', event);
         event.preventDefault();
 
         thisWidget.setValue(thisWidget.value - 1);
-        console.log('decreaseValue:', thisWidget.value);
+        //console.log('decreaseValue:', thisWidget.value);
       });
 
       thisWidget.linkIncrease.addEventListener('click', function (event) {
-        //console.log(event);
         event.preventDefault();
         thisWidget.setValue(thisWidget.value + 1);
-        console.log('IncreaseValue:', thisWidget.value);
+        //console.log('IncreaseValue:', thisWidget.value);
       });
     }
     announce() {
@@ -326,6 +331,7 @@
 
       const event = new Event('updated');
       thisWidget.element.dispatchEvent(event);
+      //console.log('announce', thisWidget.element);
     }
   }
   app.init();
