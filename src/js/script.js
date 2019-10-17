@@ -289,21 +289,22 @@
     }
     initActions() {
       const thisWidget = this;
-      thisWidget.input.addEventListener('change', function (event) {
-        console.log('chnage', event);
+      thisWidget.input.addEventListener('change', function () {
+        //console.log('chnage', event);
         thisWidget.value = thisWidget.input.value;
         console.log('thisWidget.setValue', thisWidget.value);
       });
 
       thisWidget.linkDecrease.addEventListener('click', function (event) {
-        console.log(event);
+        //console.log('czemu nei działa', event);
         event.preventDefault();
-        thisWidget.setValue(thisWidget.value - 1);
+
+        thisWidget.setValue(thisWidget.value -1);
         console.log('decreaseValue:', thisWidget.value);
       });
 
       thisWidget.linkIncrease.addEventListener('click', function (event) {
-        console.log(event);
+        //console.log(event);
         event.preventDefault();
         thisWidget.setValue(thisWidget.value + 1);
         console.log('IncreaseValue:', thisWidget.value);
