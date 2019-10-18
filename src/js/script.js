@@ -122,9 +122,30 @@
       //console.log('generatedDOM', generatedDOM);
       /*add element to menu */
       thisCart.dom.productList.appendChild(generatedDOM);
-
       console.log('adding product list', generatedDOM);
+      thisCart.products.push(menuProduct);
+      console.log('thisCart.products', thisCart.products);
     }
+  }
+
+  class cartProduct {
+    constructor(menuProduct, element) {
+      const thisCartProduct = this;
+      thisCartProduct.id = menuProduct.id;
+      thisCartProduct.name = menuProduct.name;
+      thisCartProduct.price = menuProduct.price;
+      thisCartProduct.priceSingle = menuProduct.priceSingle;
+      thisCartProduct.amount = menuProduct.amount;
+
+      thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
+      console.log('cart product params', thisCartProduct.params);
+
+
+    }
+    //getElements(element) {
+
+
+    //}
   }
 
   class Product {
