@@ -122,30 +122,10 @@
       //console.log('generatedDOM', generatedDOM);
       /*add element to menu */
       thisCart.dom.productList.appendChild(generatedDOM);
-      console.log('adding product list', generatedDOM);
+      //console.log('adding product list', generatedDOM);
       thisCart.products.push(menuProduct);
-      console.log('thisCart.products', thisCart.products);
+      //console.log('thisCart.products', thisCart.products);
     }
-  }
-
-  class cartProduct {
-    constructor(menuProduct, element) {
-      const thisCartProduct = this;
-      thisCartProduct.id = menuProduct.id;
-      thisCartProduct.name = menuProduct.name;
-      thisCartProduct.price = menuProduct.price;
-      thisCartProduct.priceSingle = menuProduct.priceSingle;
-      thisCartProduct.amount = menuProduct.amount;
-
-      thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
-      console.log('cart product params', thisCartProduct.params);
-
-
-    }
-    //getElements(element) {
-
-
-    //}
   }
 
   class Product {
@@ -413,6 +393,36 @@
       const event = new Event('updated');
       thisWidget.element.dispatchEvent(event);
       //console.log('announce', thisWidget.element);
+    }
+  }
+
+  class cartProduct {
+    constructor(menuProduct, element) {
+      const thisCartProduct = this;
+      thisCartProduct.id = menuProduct.id;
+      thisCartProduct.name = menuProduct.name;
+      thisCartProduct.price = menuProduct.price;
+      thisCartProduct.priceSingle = menuProduct.priceSingle;
+      thisCartProduct.amount = menuProduct.amount;
+
+      thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
+      thisCartProduct.getElements(element);
+
+      console.log('new Cartproduct', thisCartProduct);
+      console.log('productData', menuProduct);
+
+    }
+    getElements(element) {
+      const thisCartProduct = this;
+
+      thisCartProduct.dom = {};
+      thisCartProduct.dom.wrapper = element;
+      console.log('this dom', thisCartProduct.dom.wrapper);
+
+      thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.amountWidget);
+      thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
+      thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
+      thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
     }
   }
 
