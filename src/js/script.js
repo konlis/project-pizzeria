@@ -113,17 +113,15 @@
       });
     }
     add(menuProduct) {
-      console.log(menuProduct);
       const thisCart = this;
-
       /*generate HTML based on template*/
-      const generatedHTML = templates.cartProduct(thisCart);
-      console.log('generatedHTML:', generatedHTML);
+      const generatedHTML = templates.cartProduct(menuProduct);
+      //console.log('generatedHTML:', generatedHTML);
       /*create element using utils.createElementFromHTML */
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
-      console.log('generatedDOM', generatedDOM);
+      //console.log('generatedDOM', generatedDOM);
       /*add element to menu */
-      generatedDOM.appendChild(thisCart.dom.productList);
+      thisCart.dom.productList.appendChild(generatedDOM);
 
       console.log('adding product list', generatedDOM);
     }
