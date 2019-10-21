@@ -119,7 +119,6 @@
         ////console.log('Cart Trigger', thisCart.dom.wrapper);
       });
     }
-
     add(menuProduct) {
       const thisCart = this;
       /*generate HTML based on template*/
@@ -256,13 +255,13 @@
           thisProduct.processOrder();
           ////console.log('change', event);
         });
-        thisProduct.cartButton.addEventListener('click', function (event) {
-          event.preventDefault();
-          thisProduct.processOrder();
-          thisProduct.addToCart();
-          ////console.log('click', event);
-        });
       }
+      thisProduct.cartButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        thisProduct.processOrder();
+        thisProduct.addToCart();
+        ////console.log('click', event);
+      });
     }
     processOrder() {
       const thisProduct = this;
