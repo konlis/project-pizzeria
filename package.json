@@ -30,9 +30,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "json": "^9.0.6",
-    "json-server": "^0.15.1",
-    "server": "^1.0.19"
+    "json-server": "^0.15.1"
   },
   "devDependencies": {
     "autoprefixer-cli": "^1.0.0",
