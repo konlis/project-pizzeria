@@ -112,7 +112,7 @@
         thisCart.dom[key] = thisCart.dom.wrapper.querySelectorAll(select.cart[key]);
       }
     }
-    initActions(element) {
+    initActions(element) { // eslint-disable-line
       const thisCart = this;
       thisCart.dom.toggleTrigger.addEventListener('click', function () {
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
@@ -130,7 +130,7 @@
       const index = thisCart.products.indexOf(cartProduct);
       //console.log('index of cartProduct', index);
       const removedIndexProduct = thisCart.products.splice(index);
-      //console.log('removed', removedIndexProduct);
+      console.log('removed', removedIndexProduct);
       thisCart.update ();
       const removedProduct = thisCart.products;
       cartProduct.dom.wrapper.remove();
@@ -271,7 +271,7 @@
       for (let input of thisProduct.formInputs) {
         input.addEventListener('change', function (event) {
           thisProduct.processOrder();
-          ////console.log('change', event);
+          console.log('change', event);
         });
       }
       thisProduct.cartButton.addEventListener('click', function (event) {
@@ -371,7 +371,7 @@
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
 
       thisProduct.amountWidgetElem.addEventListener('updated', function (event) {
-        //console.log(event);
+        console.log(event);
         thisProduct.processOrder();
       });
     }
@@ -482,7 +482,7 @@
       thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
 
       thisCartProduct.dom.amountWidget.addEventListener('updated', function (event) {
-        //console.log('cartProduct amountWidget', event);
+        console.log('cartProduct amountWidget', event);
         thisCartProduct.amount = thisCartProduct.amountWidget.value;
         thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
         thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
