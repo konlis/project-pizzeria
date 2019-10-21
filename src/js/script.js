@@ -125,6 +125,18 @@
         thisCart.remove(event.detail.cartProduct);
       });
     }
+    remove(cartProduct) {
+      const thisCart = this;
+      const index = thisCart.products.indexOf(cartProduct);
+      //console.log('index of cartProduct', index);
+      const removedIndexProduct = thisCart.products.splice(index);
+      //console.log('removed', removedIndexProduct);
+      thisCart.update ();
+      const removedProduct = thisCart.products;
+      cartProduct.dom.wrapper.remove();
+      console.log('removedProduct', removedProduct);
+
+    }
     add(menuProduct) {
       const thisCart = this;
       /*generate HTML based on template*/
