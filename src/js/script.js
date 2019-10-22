@@ -145,14 +145,12 @@
         deliveryFee: thisCart.deliveryFee,
         phone: thisCart.formphone,
         address: thisCart.formAddress,
-
-        payload.products = [];
-
+        products: []
       };
-
-      for (let product in thisCart.products) {
-        thisCart.getData();
-
+      console.log('tablica', products);
+      for (let product of thisCart.products) {
+        payload.products.push(getData);
+        console.log('payload products', payload.products);
       }
       payload.product.push();
 
@@ -560,13 +558,17 @@
         console.log('remove cartProduct', thisCartProduct.dom.remove);
       });
     }
-    getData(){
+    getData() {
       const thisCartProduct = this;
 
-      id = thisCartProduct.id,
-      price = thisCartProduct.price
-      amount = thisCartProduct.amount
-      priceSingle = thisCartProduct.priceSingle
+      return {
+        id: thisCartProduct.id,
+        price: thisCartProduct.price,
+        pricesingle: thisCartProduct.priceSingle,
+        amount: thisCartProduct.amount,
+        params: thisCartProduct.params
+      };
+      console.log('return getData', return);
     }
   }
 
