@@ -108,6 +108,8 @@
       thisCart.renderTotalsKeys = ['totalNumber', 'totalPrice', 'subtotalPrice', 'deliveryFee'];
       thisCart.formPhone = thisCart.dom.wrapper.querySelector(select.cart.phone);
       thisCart.formAddress = thisCart.dom.wrapper.querySelector(select.cart.address);
+      //console.log('phone', thisCart.formPhone);
+      //console.log('address', thisCart.formAddress);
 
       for (let key of thisCart.renderTotalsKeys) {
         thisCart.dom[key] = thisCart.dom.wrapper.querySelectorAll(select.cart[key]);
@@ -141,11 +143,11 @@
         totalNumber: thisCart.totalNumber,
         subtotalPrice: thisCart.subtotalPrice,
         deliveryFee: thisCart.deliveryFee,
-        phone: thisCart.formPhone,
-        address: thisCart.formAddress,
+        phone: thisCart.formPhone.value,
+        address: thisCart.formAddress.value,
         products: []
       };
-      //console.log('tablica', products);
+      console.log('address', payload.address);
       for (let product of thisCart.products) {
         /* push to the products table form getData function*/
         payload.products.push(product.getData());
