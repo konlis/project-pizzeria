@@ -6,7 +6,7 @@
   const select = {
     templateOf: {
       menuProduct: '#template-menu-product',
-      cartProduct: '#template-cart-product', // CODE ADDED
+      cartProduct: '#template-cart-product',
     },
     containerOf: {
       menu: '#product-list',
@@ -27,12 +27,11 @@
     },
     widgets: {
       amount: {
-        input: 'input.amount', // CODE CHANGED
+        input: 'input.amount',
         linkDecrease: 'a[href="#less"]',
         linkIncrease: 'a[href="#more"]',
       },
     },
-    // CODE ADDED START
     cart: {
       productList: '.cart__order-summary',
       toggleTrigger: '.cart__summary',
@@ -51,7 +50,6 @@
       edit: '[href="#edit"]',
       remove: '[href="#remove"]',
     },
-    // CODE ADDED END
   };
 
   const classNames = {
@@ -143,16 +141,16 @@
         totalNumber: thisCart.totalNumber,
         subtotalPrice: thisCart.subtotalPrice,
         deliveryFee: thisCart.deliveryFee,
-        phone: thisCart.formphone,
+        phone: thisCart.formPhone,
         address: thisCart.formAddress,
         products: []
       };
-      console.log('tablica', products);
+      //console.log('tablica', products);
       for (let product of thisCart.products) {
-        payload.products.push(getData);
+        /* push to the products table form getData function*/
+        payload.products.push(product.getData());
         console.log('payload products', payload.products);
       }
-      payload.product.push();
 
       const options = {
         method: 'POST',
@@ -568,7 +566,6 @@
         amount: thisCartProduct.amount,
         params: thisCartProduct.params
       };
-      console.log('return getData', return);
     }
   }
 
