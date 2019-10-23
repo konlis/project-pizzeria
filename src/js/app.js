@@ -1,6 +1,15 @@
-import {Product} from './components/Product.js';
-import {Cart} from './components/Cart.js';
-import {settings, select} from './settings.js';
+import {
+  Product
+} from './components/Product.js';
+import {
+  Cart
+} from './components/Cart.js';
+import {
+  settings,
+  select,
+  classNames
+} from './settings.js';
+
 
 const app = {
   initMenu: function () {
@@ -52,7 +61,7 @@ const app = {
     /*export to Product*/
     thisApp.productList = document.querySelector(select.containerOf.menu);
 
-    thisApp.productList.addEventListener('add-to-cart', function(event){
+    thisApp.productList.addEventListener('add-to-cart', function (event) {
       app.cart.add(event.detail.product);
     });
   },
@@ -66,15 +75,31 @@ const app = {
 
     thisApp.activatePage(thisApp.pages[0].id);
 
-    for(let link of thisApp.navLinks) {
-      link.addEventListener('link', function(event) {
+    for (let link of thisApp.navLinks) {
+      link.addEventListener('click', function (event) {
         const clickedElement = this;
         event.preventDefault();
-
+        console.log('link', link);
         /* TODO: get page id from href */
-
+        const href = clickedElement.getAttribute('href');
+        console.log('href', href);
+        /* replace href to ' ' */
+        const replaceHref = href.replace('#', ' ');
+        //console.log('replace', replaceHref);
         /* TODO: activate page */
+        thisApp.activatePage(replaceHref);
       });
+    }
+  },
+
+  activatePage(pageID) {
+    const thisApp = this;
+
+    for (let link of thisApp.navLinks) {
+      link.classList.toggle(classNames.nav.active, link.getAttribute('href') == '#' + pageId);
+    }
+    for (let page of thisApp.pages) {
+      page.classList.toggle(classNames.pages.active, page.getAttribute('id') == pageId);
     }
   }
 };
