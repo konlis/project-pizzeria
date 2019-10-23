@@ -38,7 +38,9 @@ const app = {
     ////console.log('templates:', templates);
 
     thisApp.initData();
+    thisApp.initPages();
     thisApp.initCart();
+
   },
 
   initCart: function () {
@@ -54,5 +56,26 @@ const app = {
       app.cart.add(event.detail.product);
     });
   },
+
+  initPages: function () {
+    const thisApp = this;
+
+    thisApp.pages = Array.from(document.querySelector(select.containerOf.pages).children);
+
+    thisApp.navLinks = Array.from(document.querySelectorAll(select.nav.links));
+
+    thisApp.activatePage(thisApp.pages[0].id);
+
+    for(let link of thisApp.navLinks) {
+      link.addEventListener('link', function(event) {
+        const clickedElement = this;
+        event.preventDefault();
+
+        /* TODO: get page id from href */
+
+        /* TODO: activate page */
+      });
+    }
+  }
 };
 app.init();
