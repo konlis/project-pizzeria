@@ -73,16 +73,27 @@ const app = {
 
     thisApp.navLinks = Array.from(document.querySelectorAll(select.nav.links));
 
-    thisApp.activatePage(thisApp.pages[0].id);
+    let pagesMatchingHash = [];
+
+    if (window.location.hash.length > 2) {
+      const idFromHash = window.location.hash.replace('#/' , ' ');
+      console.log('idFromHash', idFromHash);
+
+      pagesMatchingHash = thisApp.pages.filter(function(page) {
+        return page.id == idFromHash;
+      });
+      console.log('pagesMatchingHash', pagesMatchingHash);
+      thisApp.activatePage(pagesMatchingHash.length ? pagesMatchingHash[0].id : thisApp.pages[0].id);
+    }
 
     for (let link of thisApp.navLinks) {
       link.addEventListener('click', function (event) {
         const clickedElement = this;
         event.preventDefault();
-        console.log('link', link);
+        //console.log('link', link);
         /* TODO: get page id from href */
         const href = clickedElement.getAttribute('href');
-        console.log('href', href);
+        //console.log('href', href);
         /* replace href to ' ' */
         const replaceHref = href.replace('#', ' ');
         //console.log('replace', replaceHref);
@@ -92,15 +103,19 @@ const app = {
     }
   },
 
-  activatePage(pageID) {
+  activatePage(pageId) {
     const thisApp = this;
 
     for (let link of thisApp.navLinks) {
       link.classList.toggle(classNames.nav.active, link.getAttribute('href') == '#' + pageId);
+      //console.log('link', link);
     }
     for (let page of thisApp.pages) {
       page.classList.toggle(classNames.pages.active, page.getAttribute('id') == pageId);
+      //console.log('page', page);
     }
+    window.location.hash = '#/' + pageId;
+
   }
 };
 app.init();
