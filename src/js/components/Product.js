@@ -1,6 +1,6 @@
 import {select, classNames, templates} from '../settings.js';
 import {utils} from '../utils.js';
-import {AmountWidget} from '.AmountWidget.js';
+import {AmountWidget} from './AmountWidget.js';
 
 export class Product {
   constructor(id, data) {
@@ -206,6 +206,7 @@ export class Product {
     thisProduct.name = thisProduct.data.name;
     thisProduct.amount = thisProduct.amountWidget.value;
 
+    /* import to app*/
     const event = new CustomEvent('add-to-cart' , {
       bubbles: true,
       detail: {
