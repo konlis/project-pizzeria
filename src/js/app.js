@@ -9,7 +9,9 @@ import {
   select,
   classNames
 } from './settings.js';
-
+import {
+  Booking
+} from './components/Booking.js';
 
 const app = {
   initMenu: function () {
@@ -76,12 +78,12 @@ const app = {
 
     if (window.location.hash.length > 2) {
       const idFromHash = window.location.hash.replace('#/', '');
-      console.log('idFromHash', idFromHash);
+      //console.log('idFromHash', idFromHash);
 
       pagesMatchingHash = thisApp.pages.filter(function (page) {
         return page.id == idFromHash;
       });
-      console.log('pagesMatchingHash', pagesMatchingHash);
+      //console.log('pagesMatchingHash', pagesMatchingHash);
     }
     thisApp.activatePage(pagesMatchingHash.length ? pagesMatchingHash[0].id : thisApp.pages[0].id);
 
@@ -99,6 +101,15 @@ const app = {
     }
   },
 
+  initBooking: function () {
+    const thisApp = this;
+    /* find widget container to site reservation with slector (select.containerOf.booking) */
+    thisApp.booking = document.querySelector(select.containerOf.booking);
+    console.log('booking', thisApp.booking);
+    /* create new instance of 'Booking' class giving her  constructor  the container of widget */
+    thisApp.booking = new Booking();
+  },
+
   activatePage(pageId) {
     const thisApp = this;
 
@@ -111,8 +122,9 @@ const app = {
       //console.log('page', page);
     }
     window.location.hash = '#/' + pageId;
-    console.log('hash', window.location.hash);
+    //console.log('hash', window.location.hash);
   }
+
 
 };
 app.init();
