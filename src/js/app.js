@@ -75,7 +75,7 @@ const app = {
     let pagesMatchingHash = [];
 
     if (window.location.hash.length > 2) {
-      const idFromHash = window.location.hash.replace('#/', ' ');
+      const idFromHash = window.location.hash.replace('#/', '');
       console.log('idFromHash', idFromHash);
 
       pagesMatchingHash = thisApp.pages.filter(function (page) {
@@ -91,7 +91,7 @@ const app = {
         event.preventDefault();
         //console.log('link', link);
         /* TODO: get page id from href */
-        const id = clickedElement.getAttribute('href').replace('#', ' ');
+        const id = clickedElement.getAttribute('href').replace('#', '');
         //console.log('page id:', id);
         /* TODO: activate page */
         thisApp.activatePage(id);
