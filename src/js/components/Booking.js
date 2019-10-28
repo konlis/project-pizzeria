@@ -10,17 +10,17 @@ import {
 } from '../utils.js';
 
 export class Booking {
-  constructor() {
+  constructor(bookingWidget) {
     const thisBooking = this;
 
-    thisBooking.render(thisBooking.element);
+    thisBooking.render(bookingWidget);
     thisBooking.initWidgets();
   }
   render(element) {
     const thisBooking = this;
     /* generate HTML with templates.bookingWidget without arguments */
     const generatedHTML = templates.bookingWidget();
-    console.log('HTML', generatedHTML);
+    //console.log('HTML', generatedHTML);
     /* create empty object thisBooking.dom */
     thisBooking.dom = {};
 
