@@ -51,13 +51,4 @@ export class AmountWidget {
       ////console.log('IncreaseValue:', thisWidget.value);
     });
   }
-  announce() {
-    const thisWidget = this;
-
-    const event = new CustomEvent('updated', {
-      bubbles: true
-    });
-    thisWidget.element.dispatchEvent(event);
-    ////console.log('announce', thisWidget.element);
-  }
 }

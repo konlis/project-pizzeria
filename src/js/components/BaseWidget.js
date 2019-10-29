@@ -23,4 +23,24 @@ export class BaseWidget {
     }
     thisWidget.renderValue();
   }
+  parseValue (newValue){
+    return parseInt (newValue);
+  }
+  isValid (newValue) {
+    return !isNaN(newValue);
+  }
+  renderValue () {
+    const thisWidget = this;
+
+    console.log('widget value:', thisWidget.value);
+  }
+  announce () {
+    const thisWidget = this;
+
+    const event = new CustomEvent('updated' , {
+      bubbles: true
+    });
+
+    thisWidget.dom.wrapper.dispatchEvent(event);
+  }
 }
