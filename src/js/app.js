@@ -105,7 +105,7 @@ const app = {
     const thisApp = this;
     /* find widget container to site reservation with slector (select.containerOf.booking) */
     const bookingWidget = document.querySelector(select.containerOf.booking);
-    console.log('booking', bookingWidget);
+    //console.log('booking', bookingWidget);
     /* create new instance of 'Booking' class giving her  constructor  the container of widget */
     thisApp.booking = new Booking(bookingWidget);
   },

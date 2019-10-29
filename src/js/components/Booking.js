@@ -26,17 +26,17 @@ export class Booking {
 
     /* save to this object 'wrapper' preference similar to argument*/
     thisBooking.dom.wrapper = element;
-    console.log('dom.wrapper', thisBooking.dom.wrapper);
+    //console.log('dom.wrapper', thisBooking.dom.wrapper);
     /* wrapper content change to HTML generated from template */
     const generatedDOM = utils.createDOMFromHTML(generatedHTML);
     element.appendChild(generatedDOM);
 
     /*  in proprties thisBooking.peopleAmount save one element at selector select.booking.peopleAmount*/
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
-    console.log('peopleAmount', thisBooking.dom.peopleAmount);
+    //console.log('peopleAmount', thisBooking.dom.peopleAmount);
     /* similarly to 'peopleAmount' find and write element for hoursAmount */
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
-    console.log('hoursamount', thisBooking.dom.hoursAmount);
+    //console.log('hoursamount', thisBooking.dom.hoursAmount);
   }
   initWidgets() {
     const thisBooking = this;
