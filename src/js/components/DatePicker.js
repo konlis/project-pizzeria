@@ -19,6 +19,15 @@ export class DatePicker extends BaseWidget {
     console.log('datepicker input:', thisWidget.dom.input);
 
     thisWidget.initPlugin();
+  }
+  initPlugin() {
+    const thisWidget = this;
+    /* create new properties 'thisWidget.minDate' similar to newDate(thisWidget.value)*/
+    thisWidget.minDate = new Date(thisWidget.value);
+    console.log('minDate:', thisWidget.minDate);
+    thisWidget.maxDate += (thisWidget.minDate + settings.datePicker.maxDaysInFuture);
+    console.log('maxDate:', thisWidget.maxDate);
+    /* initiate plugin flatpickr with good opton */
     flatpickr(thisWidget.dom.input, {
       defaultDate: thisWidget.minDate,
       minDate: thisWidget.minDate,
@@ -34,17 +43,6 @@ export class DatePicker extends BaseWidget {
         'firstDayOfWeek': 1 // start week on Monday
       }
     });
-
-  }
-  initPlugin() {
-    const thisWidget = this;
-    /* create new properties 'thisWidget.minDate' similar to newDate(thisWidget.value)*/
-    thisWidget.minDate = new Date(thisWidget.value);
-    console.log('minDate:', thisWidget.minDate);
-    thisWidget.maxDate += (thisWidget.minDate + settings.datePicker.maxDaysInFuture);
-    console.log('maxDate:', thisWidget.maxDate);
-    /* initiate plugin flatpickr with good opton */
-
   }
   parseValue(newValue) {
     return newValue;
