@@ -8,6 +8,9 @@ import {
 import {
   utils
 } from '../utils.js';
+import {
+  DatePicker
+} from './DatePicker.js';
 
 export class Booking {
   constructor(bookingWidget) {
@@ -23,10 +26,12 @@ export class Booking {
     //console.log('HTML', generatedHTML);
     /* create empty object thisBooking.dom */
     thisBooking.dom = {};
-
     /* save to this object 'wrapper' preference similar to argument*/
     thisBooking.dom.wrapper = element;
     //console.log('dom.wrapper', thisBooking.dom.wrapper);
+    /* NEW: create 'thisBooking.dom.datePicker' preference and save there element similar to 'select.widgets.datePicker.wrapper' selector */
+    thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
+    console.log('datePicker:', thisBooking.dom.datePicker);
     /* wrapper content change to HTML generated from template */
     const generatedDOM = utils.createDOMFromHTML(generatedHTML);
     element.appendChild(generatedDOM);
@@ -44,6 +49,8 @@ export class Booking {
     thisBooking.hoursAmount properties and give argument (object thisBooking.dom)*/
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
     thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
+    thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
+
 
   }
 }
