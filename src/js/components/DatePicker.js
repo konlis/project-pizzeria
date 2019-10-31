@@ -25,22 +25,33 @@ export class DatePicker extends BaseWidget {
     /* create new properties 'thisWidget.minDate' similar to newDate(thisWidget.value)*/
     thisWidget.minDate = new Date(thisWidget.value);
     console.log('minDate:', thisWidget.minDate);
-    thisWidget.maxDate += (thisWidget.minDate + settings.datePicker.maxDaysInFuture);
+
+    thisWidget.maxDate = utils.addDays(thisWidget.minDate, settings.datePicker.maxDaysInFuture);
     console.log('maxDate:', thisWidget.maxDate);
+
+
+
     /* initiate plugin flatpickr with good opton */
-    flatpickr(thisWidget.dom.input, {
+    flatpickr = (thisWidget.dom.input, {
       defaultDate: thisWidget.minDate,
       minDate: thisWidget.minDate,
       maxDate: thisWidget.maxDate,
-      'disable': [
+      disable: [
         function (date) {
-          // return true to disable
-          return (date.getDay() === 0 || date.getDay() === 6);
-
+          return (date.getDay() === 1);
         }
       ],
-      'locale': {
+      locale: {
         'firstDayOfWeek': 1 // start week on Monday
+      },
+      onChange: function (dateStr) {
+        let fullDate = new Date(dateStr);
+        let day = fullDate.getDate();
+
+        let month = fullDate.getMonth() + 1;
+
+        let year = fullDate.getFullYear();
+        thisWidget.value = year + '' + month + '' + day;
       }
     });
   }

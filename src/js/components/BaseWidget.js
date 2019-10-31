@@ -1,10 +1,12 @@
+
+
 export class BaseWidget {
   constructor(wrapperElement, initialValue) {
     const thisWidget = this;
 
     thisWidget.dom = {};
     thisWidget.dom.wrapper = wrapperElement;
-
+    //console.log('wrapper', thisWidget.dom.wrapper);
     thisWidget.correctValue = initialValue;
     //console.log('widgetcorrectValue:', thisWidget.correctValue);
   }
