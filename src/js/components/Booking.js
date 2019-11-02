@@ -11,6 +11,9 @@ import {
 import {
   DatePicker
 } from './DatePicker.js';
+import {
+  HourPicker
+} from './HourPicker.js';
 
 export class Booking {
   constructor(bookingWidget) {
@@ -36,6 +39,9 @@ export class Booking {
     /* NEW: create 'thisBooking.dom.datePicker' preference and save there element similar to 'select.widgets.datePicker.wrapper' selector */
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
     console.log('datePicker:', thisBooking.dom.datePicker);
+    /* NEW: create 'thisBooking.dom.hourPicker' preference and save there element similar to 'select.widgets.hourPicker.wrapper' selector */
+    thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
+    console.log('hourPicker:', thisBooking.dom.hourPicker);
     /*  in proprties thisBooking.peopleAmount save one element at selector select.booking.peopleAmount*/
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
     //console.log('peopleAmount', thisBooking.dom.peopleAmount);
@@ -50,7 +56,7 @@ export class Booking {
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
     thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
-
+    thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
   }
 }
