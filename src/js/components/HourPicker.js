@@ -31,11 +31,11 @@ export class HourPicker extends BaseWidget {
 
     thisWidget.dom.input.addEventListener('input', function (event) {
       thisWidget.value = thisWidget.dom.input.value;
-      console.log('listener event:', event);
+      console.log('input', event);
     });
   }
-  parseValue() {
-    const toHour = utils.numberToHour(settings.hour.open);
+  parseValue(value) {
+    const toHour = utils.numberToHour(value);
     return toHour;
   }
   isValid() {
