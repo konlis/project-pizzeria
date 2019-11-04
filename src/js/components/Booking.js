@@ -76,20 +76,20 @@ export class Booking {
       eventsCurrent: settings.db.notRepeatParam + '&' + utils.queryParams(startEndDates),
       eventsRepeat: settings.db.repeatParam + '&' + utils.queryParams(endDate),
     };
-    console.log('getData params', params);
+    //console.log('getData params', params);
 
     const urls = {
       booking: settings.db.url + '/' + settings.db.booking + '?' + params.booking,
       eventsCurrent: settings.db.url + '/' + settings.db.event + '?' + params.eventsCurrent,
       eventsRepeat: settings.db.url + '/' + settings.db.event + '?' + params.eventsRepeat,
     };
-    console.log('getData urls', urls);
+    //console.log('getData urls', urls);
 
     Promise.all([
-      fetch(urls.booking),
-      fetch(urls.eventsCurrent),
-      fetch(urls.eventsRepeat),
-    ])
+        fetch(urls.booking),
+        fetch(urls.eventsCurrent),
+        fetch(urls.eventsRepeat),
+      ])
       .then(function ([bookingsResponse, eventsCurrentResponse, eventsRepeatResponse]) {
         return Promise.all([
           bookingsResponse.json(),
@@ -101,10 +101,19 @@ export class Booking {
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
   }
-  parseData (bookings, eventsCurrent, eventsRepeat) {
+  parseData(bookings, eventsCurrent, eventsRepeat) {
     const thisBooking = this;
-
+    console.log('eventsCurrent', eventsCurrent);
     thisBooking.booked = {};
+/* cretate loop iteral on  object eventsCurrent  */
+    for (let element of eventsCurrent) {
+      console.log('element', element);
+      /* add to object arguments*/
+      thisBooking.makeBooked(element.date, element.hour, element.table, element.duration);
+    }
+  }
+  makeBooked (date, hour, table, duration) {
 
+thisBooking.booked
   }
 }
