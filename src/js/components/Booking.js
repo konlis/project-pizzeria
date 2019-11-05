@@ -86,10 +86,10 @@ export class Booking {
     //console.log('getData urls', urls);
 
     Promise.all([
-      fetch(urls.booking),
-      fetch(urls.eventsCurrent),
-      fetch(urls.eventsRepeat),
-    ])
+        fetch(urls.booking),
+        fetch(urls.eventsCurrent),
+        fetch(urls.eventsRepeat),
+      ])
       .then(function ([bookingsResponse, eventsCurrentResponse, eventsRepeatResponse]) {
         return Promise.all([
           bookingsResponse.json(),
@@ -101,7 +101,7 @@ export class Booking {
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
   }
-  parseData(bookings, eventsCurrent /*, eventsRepeat*/ ) {
+  parseData(bookings, eventsCurrent) {
     const thisBooking = this;
     console.log('eventsCurrent', eventsCurrent);
     thisBooking.booked = {};
@@ -109,11 +109,19 @@ export class Booking {
     for (let element of eventsCurrent) {
       console.log('element', element);
       /* add to object arguments*/
-      thisBooking.makeBooked(element.date, element.hour, element.table, element.duration);
+      thisBooking.makeBooked(element.date, element.hour, element.duration, element.table);
+    }
+    console.log(thisBooking.booked);
+  }
+
+  makeBooked(date, hour, duration, table) {
+    const thisBooking = this;
+    if (typeof thisBooking.booked[date] == 'undefined') {
+      thisBooking.booked[date] = {};
+    }
+    if (typeof thisBooking.booked[date][hour] == 'undefined') {
+      thisBooking.booked[date][hour] = [];
+      thisBooking.booked[date][hour].push(table);
     }
   }
-  //makeBooked (date, hour, table, duration) {
-
-  //thisBooking.booked
-  //}
 }
