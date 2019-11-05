@@ -27,7 +27,7 @@ export class HourPicker extends BaseWidget {
 
     const thisWidget = this;
 
-    rangeSlider.create(thisWidget.dom.input);
+    rangeSlider.create(thisWidget.dom.input); //eslint-disable-line
     //console.log('rangeSlider', thisWidget.dom.input);
 
     thisWidget.dom.input.addEventListener('input', function () {
