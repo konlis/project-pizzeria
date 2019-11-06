@@ -103,11 +103,11 @@ export class Booking {
   }
   parseData(bookings, eventsCurrent) {
     const thisBooking = this;
-    console.log('eventsCurrent', eventsCurrent);
+    //console.log('eventsCurrent', eventsCurrent);
     thisBooking.booked = {};
     /* create loop iteral on  object eventsCurrent  */
     for (let element of eventsCurrent) {
-      console.log('element', element);
+      //console.log('element', element);
       /* add to object arguments*/
       thisBooking.makeBooked(element.date, element.hour, element.duration, element.table);
     }
@@ -116,6 +116,9 @@ export class Booking {
 
   makeBooked(date, hour, duration, table) {
     const thisBooking = this;
+
+    //const startHour = utils.hourToNumber(hour);
+
     if (typeof thisBooking.booked[date] == 'undefined') {
       thisBooking.booked[date] = {};
     }
@@ -123,5 +126,28 @@ export class Booking {
       thisBooking.booked[date][hour] = [];
       thisBooking.booked[date][hour].push(table);
     }
+    const hourBooked = hour.split(':')[0];
+    console.log('hourBooked', hourBooked);
+    const lastHourBooked = parseInt(hourBooked) + duration;
+    console.log('lastHourBooked', lastHourBooked);
+    const minutesBooked = hour.split(':')[1];
+    console.log('minutesBooked', minutesBooked);
+    if (hour.indexOf(1) == '30') {
+      lastHourBooked;
+    }
+    /*const tablica = hour.split(':');
+    const lastTablica = tablica.reverse();
+    console.log('lastTablica', lastTablica);
+    if (lastTablica[0] == 30) {
+      tablica[tablica.length - 1] = 5;
+    } else {
+      tablica[tablica.length - 1] = 0;
+    }*/
+    if (typeof thisBooking.booked[date][lastHourBooked] == 'undefined') {
+      thisBooking.booked[date][lastHourBooked] = [];
+      thisBooking.booked[date][lastHourBooked].push(table);
+    }
+
   }
+
 }
