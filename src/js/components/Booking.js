@@ -50,6 +50,8 @@ export class Booking {
     /* similarly to 'peopleAmount' find and write element for hoursAmount */
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
     //console.log('hoursamount', thisBooking.dom.hoursAmount);
+    thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+    console.log('tables', thisBooking.dom.tables);
   }
   initWidgets() {
     const thisBooking = this;
@@ -153,6 +155,19 @@ export class Booking {
     }
   }
   updateDOM () {
+    const thisBooking = this;
     console.log('DOM');
+    thisBooking.date = thisBooking.datePicker.value;
+    console.log('actualdate', thisBooking.date);
+    thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
+    console.log('actualhour', thisBooking.hour);
+
+    for (let table of thisBooking.dom.tables) {
+      if (typeof thisBooking.booked[thisBooking.date] !== 'undefined' &&
+    typeof thisBooking.booked[thisBooking.date][thisBooking.hour] !== 'undefined';
+  thisBooking.booked[thisBooking.date][thisBooking.hour](settings.booking.tableIdAttribute)) {
+
+  }
+    }
   }
 }
