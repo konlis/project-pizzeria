@@ -86,10 +86,10 @@ export class Booking {
     //console.log('getData urls', urls);
 
     Promise.all([
-        fetch(urls.booking),
-        fetch(urls.eventsCurrent),
-        fetch(urls.eventsRepeat),
-      ])
+      fetch(urls.booking),
+      fetch(urls.eventsCurrent),
+      fetch(urls.eventsRepeat),
+    ])
       .then(function ([bookingsResponse, eventsCurrentResponse, eventsRepeatResponse]) {
         return Promise.all([
           bookingsResponse.json(),
