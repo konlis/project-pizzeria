@@ -253,5 +253,14 @@
       "starters": ["lemonWater"]
     }
   ],
-  "booking": []
+  "booking": [{
+    "id": 2,
+    "date": "2019-11-06",
+    "hour": "16:00",
+    "table": 3,
+    "repeat": "daily",
+    "duration": 2,
+    "ppl": 3,
+    "starters": ["bread", "lemonWater"]
+  }]
 }
