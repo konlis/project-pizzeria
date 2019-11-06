@@ -60,6 +60,13 @@ export class Booking {
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
+    thisBooking.dom.wrapper.addEventListener('updated', function () {
+      thisBooking.updateDOM();
+    });
+
+
+    /* add eventListener to wrapper with 'updatedDOM' handler*/
+
   }
   getData() {
     const thisBooking = this;
@@ -103,8 +110,8 @@ export class Booking {
   }
   parseData(bookings, eventsCurrent, eventsRepeat) {
     const thisBooking = this;
-    console.log('eventsCurrent', eventsCurrent);
-    console.log('bookings', bookings);
+    //console.log('eventsCurrent', eventsCurrent);
+    //console.log('bookings', bookings);
     thisBooking.booked = {};
     /* create loop iteral on  object eventsCurrent  */
     for (let element of eventsCurrent) {
@@ -116,9 +123,9 @@ export class Booking {
     }
     /* create loop iteral on  object eventsRepeat  */
     const minDate = thisBooking.datePicker.minDate;
-    console.log('minDate', minDate);
+    //console.log('minDate', minDate);
     const maxDate = thisBooking.datePicker.maxDate;
-    console.log('maxDate', maxDate);
+    //console.log('maxDate', maxDate);
     for (let element of eventsRepeat) {
       if (element.repeat == 'daily') {
         for (let eventDate = minDate; eventDate <= maxDate; eventDate = utils.addDays(eventDate, 1)) {
@@ -126,9 +133,9 @@ export class Booking {
         }
       }
     }
-    console.log('booked', thisBooking.booked);
+    //console.log('booked', thisBooking.booked);
+    thisBooking.updateDOM();
   }
-
   makeBooked(date, hour, duration, table) {
     const thisBooking = this;
 
@@ -144,5 +151,8 @@ export class Booking {
       }
       thisBooking.booked[date][hourBlock].push(table);
     }
+  }
+  updateDOM () {
+    console.log('DOM');
   }
 }
