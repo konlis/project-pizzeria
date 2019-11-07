@@ -24,6 +24,7 @@ export class Booking {
     thisBooking.render(bookingWidget);
     thisBooking.initWidgets();
     thisBooking.getData();
+    thisBooking.sendBooked();
   }
   render(element) {
     const thisBooking = this;
@@ -65,6 +66,7 @@ export class Booking {
 
     thisBooking.dom.wrapper.addEventListener('updated', function () {
       thisBooking.updateDOM();
+
     });
 
 
@@ -185,5 +187,12 @@ export class Booking {
         console.log('tabale', table);
       }
     }
+  }
+  sendBooked() {
+    const thisBooking = this;
+
+    thisBooking.dom.tables.addEventListener('click', function (event) {
+      console.log('klik', event);
+    });
   }
 }
