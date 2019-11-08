@@ -24,7 +24,7 @@ export class Booking {
     thisBooking.render(bookingWidget);
     thisBooking.initWidgets();
     thisBooking.getData();
-    thisBooking.tableChange();
+    thisBooking.sendBooked();
   }
   render(element) {
     const thisBooking = this;
@@ -42,18 +42,23 @@ export class Booking {
     //console.log('dom.wrapper', thisBooking.dom.wrapper);
     /* NEW: create 'thisBooking.dom.datePicker' preference and save there element similar to 'select.widgets.datePicker.wrapper' selector */
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
-    console.log('datePicker:', thisBooking.dom.datePicker);
-    /* NEW: create 'thisBooking.dom.hourPicker' preference and save there element similar to 'select.widgets.hourPicker.wrapper' selector */
+    //console.log('datePicker:', thisBooking.dom.datePicker);
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
-    console.log('hourPicker:', thisBooking.dom.hourPicker);
-    /*  in proprties thisBooking.peopleAmount save one element at selector select.booking.peopleAmount*/
+    //console.log('hourPicker:', thisBooking.dom.hourPicker);
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
     //console.log('peopleAmount', thisBooking.dom.peopleAmount);
-    /* similarly to 'peopleAmount' find and write element for hoursAmount */
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
     //console.log('hoursamount', thisBooking.dom.hoursAmount);
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
     //console.log('tables', thisBooking.dom.tables);
+    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.formAddress);
+    console.log('adress', thisBooking.dom.address);
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.formPhone);
+    thisBooking.dom.bookTableBtn = thisBooking.dom.wrapper.querySelector(select.booking.submitButton);
+    thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starters);
+    //console.log('starters', thisBooking.dom.starters);
+    thisBooking.dom.form = thisBooking.dom.wrapper.querySelector(select.booking.form);
+    //console.log('form', thisBooking.dom.form);
   }
   initWidgets() {
     const thisBooking = this;
@@ -67,6 +72,10 @@ export class Booking {
     thisBooking.dom.wrapper.addEventListener('updated', function () {
       thisBooking.updateDOM();
 
+      thisBooking.dom.form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        console.log('submit form', event);
+      });
     });
 
 
@@ -166,7 +175,7 @@ export class Booking {
     //console.log('actualhour', thisBooking.hour);
     let allAvailable = false;
 
-    if (typeof thisBooking.booked[thisBooking.date] == 'undefined' &&
+    if (typeof thisBooking.booked[thisBooking.date] == 'undefined' ||
       typeof thisBooking.booked[thisBooking.date][thisBooking.hour] == 'undefined') {
       allAvailable = true;
     }
@@ -184,15 +193,9 @@ export class Booking {
         table.classList.add(classNames.booking.tableBooked);
       } else {
         table.classList.remove(classNames.booking.tableBooked);
-        console.log('tabale', table);
+        //console.log('tabale', table);
       }
-    }
-  }
-  tableChange() {
-    const thisBooking = this;
-
-    /*Start loop for every table*/
-    for (let table of thisBooking.dom.tables) {
+      /*avaiavble tables*/
       table.addEventListener('click', function (event) {
         console.log('klik', event);
 
@@ -200,13 +203,53 @@ export class Booking {
 
         /*if it is booked remove class temporary booked*/
         if (!bookedTable) {
-          table.classList.add('change-table');
+          table.classList.add(classNames.booking.tableBooked);
+          thisBooking.avaiableTable = tableId;
+
         } else {
           console.log('table is already booked, chose another one');
-          //table.classList.remove('change-table');
+          //table.classList.remove(classNames.booking.tableBooked);
         }
       });
-
     }
+  }
+  sendBooked() {
+    const thisBooking = this;
+
+    const url = settings.db.url + '/' + settings.db.booking;
+
+    const toSend = {
+      date: thisBooking.datePicker.value,
+      hour: thisBooking.hourPicker.value,
+      //table: thisBooking.avaiableTable.value,
+      people: thisBooking.peopleAmount.value,
+      phone: thisBooking.formPhone,
+      address: thisBooking.dom.formAddress.value,
+      starters: []
+    };
+
+    for (let starter of thisBooking.dom.starters) {
+      /* push to the starters */
+      toSend.starters.push(starter);
+      //console.log('toSend starter', starter);
+    }
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(toSend),
+    };
+    console.log('toSend', toSend);
+    console.log('options', options);
+
+    fetch(url, options)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (parsedResponse) {
+        console.log('parsedResponse', parsedResponse);
+      });
   }
 }
