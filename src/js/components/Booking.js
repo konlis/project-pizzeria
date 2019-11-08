@@ -24,7 +24,7 @@ export class Booking {
     thisBooking.render(bookingWidget);
     thisBooking.initWidgets();
     thisBooking.getData();
-    thisBooking.sendBooked();
+    thisBooking.tableChange();
   }
   render(element) {
     const thisBooking = this;
@@ -98,10 +98,10 @@ export class Booking {
     //console.log('getData urls', urls);
 
     Promise.all([
-      fetch(urls.booking),
-      fetch(urls.eventsCurrent),
-      fetch(urls.eventsRepeat),
-    ])
+        fetch(urls.booking),
+        fetch(urls.eventsCurrent),
+        fetch(urls.eventsRepeat),
+      ])
       .then(function ([bookingsResponse, eventsCurrentResponse, eventsRepeatResponse]) {
         return Promise.all([
           bookingsResponse.json(),
@@ -188,11 +188,25 @@ export class Booking {
       }
     }
   }
-  sendBooked() {
+  tableChange() {
     const thisBooking = this;
 
-    thisBooking.dom.tables.addEventListener('click', function (event) {
-      console.log('klik', event);
-    });
+    /*Start loop for every table*/
+    for (let table of thisBooking.dom.tables) {
+      table.addEventListener('click', function (event) {
+        console.log('klik', event);
+
+        const bookedTable = table.classList.contains(classNames.booking.tableBooked);
+
+        /*if it is booked remove class temporary booked*/
+        if (!bookedTable) {
+          table.classList.add('change-table');
+        } else {
+          console.log('table is already booked, chose another one');
+          //table.classList.remove('change-table');
+        }
+      });
+
+    }
   }
 }
