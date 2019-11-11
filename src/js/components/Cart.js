@@ -1,6 +1,15 @@
-import {settings, select, classNames, templates} from '../settings.js';
-import {CartProduct} from './CartProduct.js';
-import {utils} from '../utils.js';
+import {
+  settings,
+  select,
+  classNames,
+  templates
+} from '../settings.js';
+import {
+  CartProduct
+} from './CartProduct.js';
+import {
+  utils
+} from '../utils.js';
 
 export class Cart {
   constructor(element) {
@@ -15,6 +24,7 @@ export class Cart {
   }
   getElements(element) {
     const thisCart = this;
+
 
     thisCart.dom = {};
 
