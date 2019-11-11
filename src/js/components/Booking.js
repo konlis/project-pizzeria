@@ -223,16 +223,16 @@ export class Booking {
       hour: thisBooking.hourPicker.value,
       //table: thisBooking.avaiableTable.value,
       people: thisBooking.peopleAmount.value,
-      phone: thisBooking.formPhone,
-      address: thisBooking.dom.formAddress.value,
-      starters: []
+      phone: thisBooking.dom.phone,
+      address: thisBooking.dom.address.value,
+      //starters: []
     };
 
-    for (let starter of thisBooking.dom.starters) {
-      /* push to the starters */
+    /*for (let starter of thisBooking.dom.starters) {
+      /* push to the starters
       toSend.starters.push(starter);
       //console.log('toSend starter', starter);
-    }
+    }*/
 
     const options = {
       method: 'POST',
