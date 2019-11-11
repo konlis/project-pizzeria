@@ -221,18 +221,21 @@ export class Booking {
     const toSend = {
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
-      //table: thisBooking.avaiableTable.value,
+      table: thisBooking.dom.tables.value,
+      duration: thisBooking.dom.hoursAmount.value,
       people: thisBooking.peopleAmount.value,
-      phone: thisBooking.formPhone,
-      address: thisBooking.dom.formAddress.value,
-      starters: []
+      phone: thisBooking.dom.phone.value,
+      address: thisBooking.dom.address.value,
+      //starters: []
     };
-
-    for (let starter of thisBooking.dom.starters) {
-      /* push to the starters */
+    console.log('tosend adress', toSend.address);
+    console.log('tosend phone', toSend.phone);
+    console.log('tosend table', toSend.table);
+    /*for (let starter of thisBooking.dom.starters) {
+      /* push to the starters
       toSend.starters.push(starter);
-      //console.log('toSend starter', starter);
-    }
+      console.log('toSend starter', starter);
+    }*/
 
     const options = {
       method: 'POST',
@@ -251,5 +254,6 @@ export class Booking {
       .then(function (parsedResponse) {
         console.log('parsedResponse', parsedResponse);
       });
+    thisBooking.makeBooked(toSend.duration, toSend.hour, toSend.table);
   }
 }
