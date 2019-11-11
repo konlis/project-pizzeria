@@ -74,6 +74,7 @@ export class Booking {
 
       thisBooking.dom.form.addEventListener('submit', function (event) {
         event.preventDefault();
+        thisBooking.sendBooked();
         console.log('submit form', event);
       });
     });
@@ -221,7 +222,8 @@ export class Booking {
     const toSend = {
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
-      //table: thisBooking.avaiableTable.value,
+      table: thisBooking.dom.tables.value,
+      duration: thisBooking.dom.hoursAmount.value,
       people: thisBooking.peopleAmount.value,
       phone: thisBooking.dom.phone,
       address: thisBooking.dom.address.value,
