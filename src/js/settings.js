@@ -115,7 +115,7 @@ export const settings = {
     tableIdAttribute: 'data-table',
   },
   db: {
-    url: '//localhost:4000',
+    url: '//localhost:3131',
     product: 'product',
     order: 'order',
     booking: 'booking',

@@ -24,7 +24,6 @@ export class Booking {
     thisBooking.render(bookingWidget);
     thisBooking.initWidgets();
     thisBooking.getData();
-    thisBooking.sendBooked();
   }
   render(element) {
     const thisBooking = this;
@@ -205,7 +204,7 @@ export class Booking {
         /*if it is booked remove class temporary booked*/
         if (!bookedTable) {
           table.classList.add(classNames.booking.tableBooked);
-          thisBooking.avaiableTable = tableId;
+          thisBooking.pickedTable = tableId;
 
         } else {
           console.log('table is already booked, chose another one');
@@ -222,10 +221,10 @@ export class Booking {
     const toSend = {
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
-      table: thisBooking.dom.tables.value,
-      duration: thisBooking.dom.hoursAmount.value,
+      table: thisBooking.pickedTable,
+      duration: thisBooking.hoursAmount.value,
       people: thisBooking.peopleAmount.value,
-      phone: thisBooking.dom.phone,
+      phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value,
       //starters: []
     };
@@ -243,8 +242,8 @@ export class Booking {
       },
       body: JSON.stringify(toSend),
     };
-    console.log('toSend', toSend);
-    console.log('options', options);
+    //console.log('toSend', toSend);
+    //console.log('options', options);
 
     fetch(url, options)
       .then(function (response) {
