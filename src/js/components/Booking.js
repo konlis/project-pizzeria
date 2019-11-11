@@ -221,7 +221,8 @@ export class Booking {
     const toSend = {
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
-      //table: thisBooking.avaiableTable.value,
+      table: thisBooking.dom.tables.value,
+      duration: thisBooking.dom.hoursAmount.value,
       people: thisBooking.peopleAmount.value,
       phone: thisBooking.dom.phone,
       address: thisBooking.dom.address.value,
@@ -251,5 +252,6 @@ export class Booking {
       .then(function (parsedResponse) {
         console.log('parsedResponse', parsedResponse);
       });
+    thisBooking.makeBooked(toSend.duration, toSend.hour, toSend.table);
   }
 }
