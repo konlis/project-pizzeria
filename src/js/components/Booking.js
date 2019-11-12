@@ -211,6 +211,16 @@ export class Booking {
           //table.classList.remove(classNames.booking.tableBooked);
         }
       });
+      thisBooking.tableChecked();
+    }
+  }
+  tableChecked() {
+    const thisBooking = this;
+
+    const tableBooked = thisBooking.booked[thisBooking.date][thisBooking.hour].includes(thisBooking.tableId);
+    console.log('checkedTable', tableBooked);
+    if (!tableBooked && thisBooking.hoursAmount <= 3) {
+      thisBooking.sendBooked();
     }
   }
   sendBooked() {
