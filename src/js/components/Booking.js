@@ -51,7 +51,7 @@ export class Booking {
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
     //console.log('tables', thisBooking.dom.tables);
     thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.formAddress);
-    console.log('adress', thisBooking.dom.address);
+    //console.log('adress', thisBooking.dom.address);
     thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.formPhone);
     thisBooking.dom.bookTableBtn = thisBooking.dom.wrapper.querySelector(select.booking.submitButton);
     thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starters);
@@ -70,13 +70,12 @@ export class Booking {
 
     thisBooking.dom.wrapper.addEventListener('updated', function () {
       thisBooking.updateDOM();
-
-      thisBooking.dom.form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        thisBooking.tableChecked();
-        thisBooking.sendBooked();
-        console.log('submit form', event);
-      });
+    });
+    thisBooking.dom.form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      thisBooking.tableChecked();
+      thisBooking.sendBooked();
+      console.log('submit form', event);
     });
 
 
@@ -125,15 +124,18 @@ export class Booking {
   }
   parseData(bookings, eventsCurrent, eventsRepeat) {
     const thisBooking = this;
-    //console.log('eventsCurrent', eventsCurrent);
-    //console.log('bookings', bookings);
+    console.log('eventsCurrent', eventsCurrent);
+    console.log('bookings', bookings);
+    console.log('eventsRepeat', eventsRepeat);
     thisBooking.booked = {};
-    /* create loop iteral on  object eventsCurrent  */
-    for (let element of eventsCurrent) {
-      thisBooking.makeBooked(element.date, element.hour, element.duration, element.table);
-    }
+
     /* create loop iteral on  object bookings  */
     for (let element of bookings) {
+      thisBooking.makeBooked(element.date, element.hour, element.duration, element.table);
+      console.log('elementtable', element.table);
+    }
+    /* create loop iteral on  object eventsCurrent  */
+    for (let element of eventsCurrent) {
       thisBooking.makeBooked(element.date, element.hour, element.duration, element.table);
     }
     /* create loop iteral on  object eventsRepeat  */
@@ -143,28 +145,34 @@ export class Booking {
     //console.log('maxDate', maxDate);
     for (let element of eventsRepeat) {
       if (element.repeat == 'daily') {
-        for (let eventDate = minDate; eventDate <= maxDate; eventDate = utils.addDays(eventDate, 1)) {
+        for (let eventDate = minDate;
+          eventDate <= maxDate;
+          eventDate = utils.addDays(eventDate, 1)) {
           thisBooking.makeBooked(utils.dateToStr(eventDate), element.hour, element.duration, element.table);
         }
       }
     }
-    //console.log('booked', thisBooking.booked);
+    console.log('booked', thisBooking.booked);
     thisBooking.updateDOM();
   }
   makeBooked(date, hour, duration, table) {
     const thisBooking = this;
 
-    const startHour = utils.hourToNumber(hour);
-
     if (typeof thisBooking.booked[date] == 'undefined') {
       thisBooking.booked[date] = {};
     }
+
+    const startHour = utils.hourToNumber(hour);
+
     for (let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5) {
       //console.log('hourBlock', hourBlock);
       if (typeof thisBooking.booked[date][hourBlock] == 'undefined') {
         thisBooking.booked[date][hourBlock] = [];
+        //console.log('push to []', thisBooking.booked[date][hourBlock]);
       }
       thisBooking.booked[date][hourBlock].push(table);
+      //console.log('push', thisBooking.booked[date][hourBlock].push(table));
+      //console.log('table', table);
     }
   }
   updateDOM() {
@@ -176,18 +184,22 @@ export class Booking {
     //console.log('actualhour', thisBooking.hour);
     let allAvailable = false;
 
-    if (typeof thisBooking.booked[thisBooking.date] == 'undefined' ||
+    if (
+      typeof thisBooking.booked[thisBooking.date] == 'undefined' ||
       typeof thisBooking.booked[thisBooking.date][thisBooking.hour] == 'undefined') {
+      console.log('zmiana');
+
       allAvailable = true;
     }
-
+    console.log('booked', thisBooking.booked);
+    console.log('allAvailable', allAvailable);
     for (let table of thisBooking.dom.tables) {
       let tableId = table.getAttribute(settings.booking.tableIdAttribute);
       if (!isNaN(tableId)) {
         tableId = parseInt(tableId);
 
         //console.log('tableId', tableId);
-        //console.log('tabale', table);
+        //console.log('table', table);
         //console.log('thisBooking.dom.tables', thisBooking.dom.tables);
       }
       if (!allAvailable && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)) {
@@ -216,15 +228,19 @@ export class Booking {
   }
   tableChecked() {
     const thisBooking = this;
+    for (let tableNumber of thisBooking.tableId) {
 
+      tableNumber.addEventListener('click', function (event) {
+        console.log('tableNumber', tableNumber);
+        console.log('click', event);
+      });
+    }
     const tableBooked = thisBooking.booked[thisBooking.date][thisBooking.hour].includes(thisBooking.tableId);
-
     console.log('tableBooked', tableBooked);
-    if (!tableBooked && thisBooking.hoursAmount.value) {
-      console.log('amount', thisBooking.hoursAmount.value);
-      thisBooking.sendBooked();
+    if (!tableBooked) {
+      //thisBooking.sendBooked();
     } else {
-      console.log('Sorry, but this table at "+ ');
+      window.alert('Sorry, but this table is booked');
     }
   }
   sendBooked() {
@@ -256,7 +272,7 @@ export class Booking {
       },
       body: JSON.stringify(toSend),
     };
-    //console.log('toSend', toSend);
+    console.log('toSend', toSend);
     //console.log('options', options);
 
     fetch(url, options)
