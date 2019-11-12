@@ -73,6 +73,7 @@ export class Booking {
 
       thisBooking.dom.form.addEventListener('submit', function (event) {
         event.preventDefault();
+        thisBooking.tableChecked();
         thisBooking.sendBooked();
         console.log('submit form', event);
       });
@@ -211,16 +212,19 @@ export class Booking {
           //table.classList.remove(classNames.booking.tableBooked);
         }
       });
-      thisBooking.tableChecked();
     }
   }
   tableChecked() {
     const thisBooking = this;
 
     const tableBooked = thisBooking.booked[thisBooking.date][thisBooking.hour].includes(thisBooking.tableId);
-    console.log('checkedTable', tableBooked);
-    if (!tableBooked && thisBooking.hoursAmount <= 3) {
+
+    console.log('tableBooked', tableBooked);
+    if (!tableBooked && thisBooking.hoursAmount.value) {
+      console.log('amount', thisBooking.hoursAmount.value);
       thisBooking.sendBooked();
+    } else {
+      console.log('Sorry, but this table at "+ ');
     }
   }
   sendBooked() {
@@ -257,8 +261,10 @@ export class Booking {
 
     fetch(url, options)
       .then(function (response) {
+        thisBooking.getData();
         return response.json();
       })
+
       .then(function (parsedResponse) {
         console.log('parsedResponse', parsedResponse);
       });

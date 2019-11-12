@@ -255,9 +255,9 @@
   ],
   "booking": [{
     "id": 2,
-    "date": "2019-11-06",
-    "hour": "16:00",
-    "table": 3,
+    "date": "2019-11-12",
+    "hour": "13:00",
+    "table": 1,
     "repeat": "daily",
     "duration": 2,
     "ppl": 3,
