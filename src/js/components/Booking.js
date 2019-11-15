@@ -189,7 +189,7 @@ export class Booking {
 
       allAvailable = true;
     }
-  //  console.log('booked', thisBooking.booked);
+    //console.log('booked', thisBooking.booked);
     //console.log('allAvailable', allAvailable);
     for (let table of thisBooking.dom.tables) {
       let tableId = table.getAttribute(settings.booking.tableIdAttribute);

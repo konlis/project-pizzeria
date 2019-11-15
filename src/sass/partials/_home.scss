@@ -1,9 +1,10 @@
-.home {
+.home{
   margin-top: 45px;
   background-color: $color-light;
   padding-top: 35px;
 }
 // Home Wrapper
+
 .home-wrapper {
   display: flex;
   padding: 20px;
@@ -11,6 +12,11 @@
 
   .order-and-book-wrapper {
     display: flex;
+
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
   }
 }
 
@@ -26,10 +32,12 @@
 
 .link {
   height: 120px;
-  justify-content: center;
+  //justify-content: center;
   width: 100%;
   border-radius: $radius;
   color: $color-light;
+  font-weight: $font-bold;
+  //font-stretch: expanded;
 
   p {
     text-align: center;
@@ -42,12 +50,15 @@
   background-color: $color-main;
   height: 125px;
   margin-top: 6px;
+  line-height: 0.4;
+  & span {
+    font-size: 18px;
+    font-weight: $font-normal;
+  }
 }
 
-p {
-  text-align: center;
-}
 // Carousel
+
 .carousel-wrapper {
   display: flex;
   padding-top: 50px;
@@ -58,7 +69,6 @@ p {
   flex: 1;
   max-height: 200px;
   //padding: 0 10px;
-
   img {
     width: 100%;
     border-radius: $radius;
@@ -76,6 +86,7 @@ p {
 
   p {
     text-align: left;
+    font-stretch: expanded;
   }
 
   .quotes-sign {
@@ -90,10 +101,17 @@ p {
 
 .carousel-dots {
   text-align: center;
+  padding-top: 50px;
 
   .fa-circle {
-    padding: 50px 7px;
+    color: grey;
+    padding: 0 7px;
     font-size: 10px;
+
+    &:hover {
+      color: $color-dark;
+      font-size: 12px;
+    }
   }
 }
 //Gallery
@@ -113,19 +131,40 @@ p {
   flex: 3 200px;
   height: 200px;
   position: relative;
-  text-align:center;
 }
 
 img {
   object-fit: cover;
-  max-width: 200px;
+  max-width: 195px;
   border-radius: $radius;
-  padding: 6px 3px;
+  margin: 6px 0;
   //position: relative;
 }
 
 .icon {
+  .fas {
+    padding: 0 5px;
+
+    &:hover {
+      color: $color-main;
+      font-size: 30px;
+    }
+  }
+
+  .fa-share-alt:hover {
+    color: lightblue;
+  }
+  display: flex;
   position: absolute;
-
-
+  top: 50%;
+  left: 30%;
+  transform: translate(-50% -50%);
+  color: $color-light;
+  font-size: 20px;
+}
+//Footer
+.footer p {
+  text-align: left;
+  color: $color-main;
+  text-decoration: underline;
 }
