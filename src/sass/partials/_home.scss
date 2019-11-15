@@ -1,31 +1,131 @@
 .home {
-margin-top: 45px;
-background-color: #ffff;
-padding-top: 35px;
+  margin-top: 45px;
+  background-color: $color-light;
+  padding-top: 35px;
 }
-
+// Home Wrapper
 .home-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  margin: 30px;
+  padding: 20px;
+  flex-direction: column;
+
+  .order-and-book-wrapper {
+    display: flex;
+  }
 }
 
 .nav-order {
-  background-image: url('../images/assets/pizza-1.jpg');
-}
-
-.link {
-  //padding-bottom: 5px;
-  padding-top: 25px;
-  flex: 1;
-  justify-content: space-between;
-  width: 100%;
+  background-image: url("../images/assets/pizza-1.jpg");
+  margin-right: 3px;
 }
 
 .nav-book {
-  background-image: url('../images/assets/pizza-2.jpg');
+  background-image: url("../images/assets/pizza-2.jpg");
+  margin-left: 3px;
+}
+
+.link {
+  height: 120px;
+  justify-content: center;
+  width: 100%;
+  border-radius: $radius;
+  color: $color-light;
+
+  p {
+    text-align: center;
+    font-style: $font-text;
+    font-size: 30px;
+  }
 }
 
 .hours {
-  background-color: red;
+  background-color: $color-main;
+  height: 125px;
+  margin-top: 6px;
+}
+
+p {
+  text-align: center;
+}
+// Carousel
+.carousel-wrapper {
+  display: flex;
+  padding-top: 50px;
+}
+
+.carousel-image {
+  display: flex;
+  flex: 1;
+  max-height: 200px;
+  //padding: 0 10px;
+
+  img {
+    width: 100%;
+    border-radius: $radius;
+    object-fit: cover;
+  }
+}
+
+.quotes {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  padding: 0 20px;
+  overflow-y: hidden;
+  height: 200px;
+
+  p {
+    text-align: left;
+  }
+
+  .quotes-sign {
+    font-style: italic;
+  }
+
+  h2 {
+    text-transform: uppercase;
+  }
+}
+//Carousel dots
+
+.carousel-dots {
+  text-align: center;
+
+  .fa-circle {
+    padding: 50px 7px;
+    font-size: 10px;
+  }
+}
+//Gallery
+
+.gallery {
+  padding-top: 50px;
+}
+
+.gallery-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.image {
+  display: flex;
+  flex: 3 200px;
+  height: 200px;
+  position: relative;
+  text-align:center;
+}
+
+img {
+  object-fit: cover;
+  max-width: 200px;
+  border-radius: $radius;
+  padding: 6px 3px;
+  //position: relative;
+}
+
+.icon {
+  position: absolute;
+
+
 }
