@@ -16,13 +16,16 @@ import {
 const app = {
   initCarousel: function () {
     const thisApp = this;
-
+    console.log(thisApp);
+    const dotArray = [];
     const slides = document.querySelectorAll(select.carousel.slides);
     //console.log('cytaty', slides);
     const dots = document.querySelectorAll(select.carousel.dots);
     //console.log('dots', dots);
 
     for (let dot of dots) {
+      dotArray.push(dot);
+
       dot.addEventListener('click', function (event) {
         event.preventDefault();
 
@@ -32,18 +35,57 @@ const app = {
           //slide.classList.add(classNames.carousel.slidesActive);
 
           if (slide.id != dot.id) {
-            console.log('slide id', slide.id);
+            //console.log('slide id', slide.id);
             slide.classList.remove(classNames.carousel.slidesActive);
           } else if (slide.id == dot.id) {
             slide.classList.add(classNames.carousel.slidesActive);
           }
-          console.log('slide', slide);
+          //console.log('slide', slide);
         }
-        console.log('dot', dot);
+        //console.log('dot', dot);
       });
     }
 
+    let i = 1;
+    const carouseltemArray = [];
+    const carouseltems = document.querySelectorAll(select.carousel.slides);
+    //console.log('caritems', carouseltems);
+    for (let item of carouseltems) {
+      carouseltemArray.push(item);
+      //console.log('item', item);
+    }
+    //console.log('car Array', carouseltemArray);
+
+    function changeSlide() {
+
+      document.querySelector('.quotes').src = carouseltemArray[i];
+      console.log('zawartosc tblicy', carouseltemArray[i]);
+      for (let item of carouseltemArray ) {
+        console.log('item', item);
+        item.classList.remove('active');
+
+        item.classList.add('active');
+      }
+      dotArray[i].click(event);
+      console.log('event', event);
+      console.log('dotArray', dotArray[i]);
+
+      if (i < carouseltemArray.length - 1) {
+        i++;
+      } else {
+        i = 0;
+      }
+    }
+
+    window.onload = function () {
+      setInterval(() => {
+        changeSlide();
+      }, 4000);
+    };
   },
+
+
+
 
   initMenu: function () {
     const thisApp = this;
@@ -84,6 +126,7 @@ const app = {
     thisApp.initPages();
     thisApp.initCart();
     thisApp.initBooking();
+    thisApp.initCarousel();
   },
 
   initCart: function () {

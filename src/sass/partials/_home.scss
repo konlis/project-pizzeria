@@ -83,7 +83,7 @@
   padding: 0 20px;
   overflow: hidden;
   height: 200px;
-
+  //opacity: 0.5;
   p {
     text-align: left;
     font-stretch: expanded;
@@ -98,16 +98,32 @@
   }
 
   .quote {
-    display: none;
+    opacity: 0;
+    transition: 1s opacity;
   }
 
   .active {
     display: flex;
     flex-direction: column;
-    //transition: .4s display;
+  }
+
+  .q-one.active {
+    opacity: 1;
+    transition: 2s opacity;
+  }
+
+  .q-two.active {
+    transform: translateY(-189px);
+    opacity: 1;
+      transition: 2s opacity;
+  }
+
+  .q-three.active {
+    transform: translateY(-380px);
+    opacity: 1;
+      transition: 2s opacity;
   }
 }
-
 //Carousel dots
 
 .carousel-dots {
@@ -120,17 +136,14 @@
     font-size: 10px;
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    .active {
       color: $color-dark;
       font-size: 12px;
+      transition: 0.5s;
     }
   }
-  .active {
-    color: $color-danger;
-    font-size: 12px;
-  }
 }
-
 //Gallery
 
 .gallery {
