@@ -1,4 +1,4 @@
-.home{
+.home {
   margin-top: 45px;
   background-color: $color-light;
   padding-top: 35px;
@@ -16,6 +16,7 @@
     a {
       text-decoration: none;
       color: #fff;
+      cursor: pointer;
     }
   }
 }
@@ -38,7 +39,6 @@
   color: $color-light;
   font-weight: $font-bold;
   //font-stretch: expanded;
-
   p {
     text-align: center;
     font-style: $font-text;
@@ -51,12 +51,12 @@
   height: 125px;
   margin-top: 6px;
   line-height: 0.4;
-  & span {
+
+  span {
     font-size: 18px;
     font-weight: $font-normal;
   }
 }
-
 // Carousel
 
 .carousel-wrapper {
@@ -68,7 +68,7 @@
   display: flex;
   flex: 1;
   max-height: 200px;
-  //padding: 0 10px;
+
   img {
     width: 100%;
     border-radius: $radius;
@@ -81,7 +81,7 @@
   flex: 2;
   flex-direction: column;
   padding: 0 20px;
-  overflow-y: hidden;
+  overflow: hidden;
   height: 200px;
 
   p {
@@ -96,7 +96,18 @@
   h2 {
     text-transform: uppercase;
   }
+
+  .quote {
+    display: none;
+  }
+
+  .active {
+    display: flex;
+    flex-direction: column;
+    //transition: .4s display;
+  }
 }
+
 //Carousel dots
 
 .carousel-dots {
@@ -107,13 +118,19 @@
     color: grey;
     padding: 0 7px;
     font-size: 10px;
+    cursor: pointer;
 
     &:hover {
       color: $color-dark;
       font-size: 12px;
     }
   }
+  .active {
+    color: $color-danger;
+    font-size: 12px;
+  }
 }
+
 //Gallery
 
 .gallery {
@@ -148,6 +165,7 @@ img {
     &:hover {
       color: $color-main;
       font-size: 30px;
+      cursor: pointer;
     }
   }
 
@@ -162,7 +180,12 @@ img {
   color: $color-light;
   font-size: 20px;
 }
+
+.icon a {
+  text-decoration: none;
+}
 //Footer
+
 .footer p {
   text-align: left;
   color: $color-main;

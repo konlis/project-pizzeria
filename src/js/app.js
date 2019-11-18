@@ -14,6 +14,37 @@ import {
 } from './components/Booking.js';
 
 const app = {
+  initCarousel: function () {
+    const thisApp = this;
+
+    const slides = document.querySelectorAll(select.carousel.slides);
+    //console.log('cytaty', slides);
+    const dots = document.querySelectorAll(select.carousel.dots);
+    //console.log('dots', dots);
+
+    for (let dot of dots) {
+      dot.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        dot.classList.remove(classNames.carousel.dotsActive);
+
+        for (let slide of slides) {
+          //slide.classList.add(classNames.carousel.slidesActive);
+
+          if (slide.id != dot.id) {
+            console.log('slide id', slide.id);
+            slide.classList.remove(classNames.carousel.slidesActive);
+          } else if (slide.id == dot.id) {
+            slide.classList.add(classNames.carousel.slidesActive);
+          }
+          console.log('slide', slide);
+        }
+        console.log('dot', dot);
+      });
+    }
+
+  },
+
   initMenu: function () {
     const thisApp = this;
     ////console.log('thisApp.data:', thisApp.data);
@@ -48,6 +79,7 @@ const app = {
     ////console.log('settings:', settings);
     ////console.log('templates:', templates);
 
+    thisApp.initCarousel();
     thisApp.initData();
     thisApp.initPages();
     thisApp.initCart();

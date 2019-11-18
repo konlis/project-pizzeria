@@ -74,6 +74,10 @@ export const select = {
   nav: {
     links: '.main-nav a',
   },
+  carousel: {
+    dots: '.fa-circle',
+    slides: '.quote',
+  }
 };
 
 export const classNames = {
@@ -94,6 +98,10 @@ export const classNames = {
   pages: {
     active: 'active',
   },
+  carousel: {
+    dotsActive: 'active',
+    slidesActive: 'active',
+  }
 };
 
 export const settings = {
