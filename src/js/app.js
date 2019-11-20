@@ -25,24 +25,26 @@ const app = {
 
     for (let dot of dots) {
       dotArray.push(dot);
-
+      console.log('dot1', dot);
       dot.addEventListener('click', function (event) {
         event.preventDefault();
 
-        dot.classList.remove(classNames.carousel.dotsActive);
+        //dot.classList.remove(classNames.carousel.dotsActive);
 
         for (let slide of slides) {
-          //slide.classList.add(classNames.carousel.slidesActive);
-
-          if (slide.id != dot.id) {
+          //dot.getAttribute('dot-id');
+          //console.log('dot', dot);
+          slide.getAttribute('slide-id');
+          //console.log('slide', slide);
+          if (slide != dot) {
             //console.log('slide id', slide.id);
             slide.classList.remove(classNames.carousel.slidesActive);
-          } else if (slide.id == dot.id) {
+          } else if (slide == dot) {
             slide.classList.add(classNames.carousel.slidesActive);
           }
           //console.log('slide', slide);
         }
-        //console.log('dot', dot);
+        console.log('dot', dot);
       });
     }
 
@@ -59,16 +61,16 @@ const app = {
     function changeSlide() {
 
       document.querySelector('.quotes').src = carouseltemArray[i];
-      console.log('zawartosc tblicy', carouseltemArray[i]);
-      for (let item of carouseltemArray ) {
-        console.log('item', item);
+      //console.log('zawartosc tblicy', carouseltemArray[i]);
+      for (let item of carouseltemArray) {
+        //console.log('item', item);
         item.classList.remove('active');
 
         item.classList.add('active');
       }
       dotArray[i].click(event);
-      console.log('event', event);
-      console.log('dotArray', dotArray[i]);
+      //console.log('event', event);
+      //console.log('dotArray', dotArray[i]);
 
       if (i < carouseltemArray.length - 1) {
         i++;
@@ -148,6 +150,7 @@ const app = {
 
     thisApp.pages = Array.from(document.querySelector(select.containerOf.pages).children);
     thisApp.navLinks = Array.from(document.querySelectorAll(select.nav.links));
+    thisApp.buttons = Array.from(document.querySelectorAll(select.nav.homeLinks));
 
     let pagesMatchingHash = [];
 
@@ -166,10 +169,19 @@ const app = {
       link.addEventListener('click', function (event) {
         const clickedElement = this;
         event.preventDefault();
-        //console.log('link', link);
         /* TODO: get page id from href */
         const id = clickedElement.getAttribute('href').replace('#', '');
-        //console.log('page id:', id);
+        /* TODO: activate page */
+        thisApp.activatePage(id);
+      });
+    }
+
+    for (let link of thisApp.buttons) {
+      link.addEventListener('click', function (event) {
+        const clickedElement = this;
+        event.preventDefault();
+        /* TODO: get page id from href */
+        const id = clickedElement.getAttribute('href').replace('#', '');
         /* TODO: activate page */
         thisApp.activatePage(id);
       });

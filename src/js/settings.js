@@ -73,6 +73,7 @@ export const select = {
   },
   nav: {
     links: '.main-nav a',
+    homeLinks: '.link a',
   },
   carousel: {
     dots: '.fa-circle',
