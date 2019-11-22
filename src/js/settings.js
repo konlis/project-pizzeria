@@ -78,6 +78,8 @@ export const select = {
   carousel: {
     dots: '.fa-circle',
     slides: '.quote',
+    dotsId: 'idz',
+    slidesId: 'id',
   }
 };
 

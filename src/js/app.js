@@ -32,8 +32,8 @@ const app = {
         dot.classList.remove(classNames.carousel.dotsActive);
 
         for (let slide of slides) {
-          const slideId =  slide.getAttribute('slide-id');
-          const dotId = dot.getAttribute('slide-id');
+          const slideId =  slide.getAttribute(select.carousel.slidesId);
+          const dotId = dot.getAttribute(select.carousel.dotsId);
           if (slideId != dotId) {
             slide.classList.remove(classNames.carousel.slidesActive);
           } else if (slideId == dotId) {
