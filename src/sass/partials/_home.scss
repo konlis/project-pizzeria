@@ -144,8 +144,9 @@
   }
 
   .q-one.active {
+    //transform: translateY(0);
     opacity: 1;
-    transition: 2s opacity;
+    transition: 1s opacity;
   }
 
   .q-two.active {

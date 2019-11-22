@@ -25,26 +25,23 @@ const app = {
 
     for (let dot of dots) {
       dotArray.push(dot);
-      console.log('dot1', dot);
+      //console.log('dot1', dot);
       dot.addEventListener('click', function (event) {
         event.preventDefault();
 
-        //dot.classList.remove(classNames.carousel.dotsActive);
+        dot.classList.remove(classNames.carousel.dotsActive);
 
         for (let slide of slides) {
-          //dot.getAttribute('dot-id');
-          //console.log('dot', dot);
-          slide.getAttribute('slide-id');
-          //console.log('slide', slide);
-          if (slide != dot) {
-            //console.log('slide id', slide.id);
+          const slideId =  slide.getAttribute('slide-id');
+          const dotId = dot.getAttribute('slide-id');
+          if (slideId != dotId) {
             slide.classList.remove(classNames.carousel.slidesActive);
-          } else if (slide == dot) {
+          } else if (slideId == dotId) {
             slide.classList.add(classNames.carousel.slidesActive);
           }
-          //console.log('slide', slide);
+          // console.log('slide', slide);
+          // console.log('dot', dot);
         }
-        console.log('dot', dot);
       });
     }
 
